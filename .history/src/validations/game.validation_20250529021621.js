@@ -29,7 +29,6 @@ export const validateCreateGame = [
     .withMessage("Genre must be one of the allowed values"),
 ];
 
-/* ======================= validateUpdateGame ======================= */
 export const validateUpdateGame = [
   param("id").isMongoId().withMessage("Invalid game ID"),
 

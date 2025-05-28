@@ -45,6 +45,7 @@ const createGame = async (req, res) => {
 /* ======================= Update a game ======================= */
 const updateGame = async (req, res) => {
   try {
+    // Check for validation errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res
@@ -94,6 +95,7 @@ const updateGame = async (req, res) => {
 /* ======================= Delete a game ======================= */
 const deleteGame = async (req, res) => {
   try {
+    // Check for validation errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res

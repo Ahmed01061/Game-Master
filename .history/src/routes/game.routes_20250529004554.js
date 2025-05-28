@@ -18,17 +18,4 @@ gameRouter.post(
   validation,
   createGame
 );
-
-/* ======== End Point Update Game ========  */
-gameRouter.put(
-  "/:id",
-  uploadFileDisk().single("coverImage"),
-  validateUpdateGame,
-  validation,
-  updateGame
-);
-
-/* ======== End Point Delete Game ========  */
-gameRouter.delete("/:id", validateDeleteGame, validation, deleteGame);
-
 export default gameRouter;
