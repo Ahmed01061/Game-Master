@@ -6,8 +6,11 @@ import { validateCreateGame } from "../validations/game.validation.js";
 
 const gameRouter = Router();
 
+/* ======== End Point Get Game ========  */
+
 gameRouter.get("/", getGames);
 
+/* ======== End Point Create Game ========  */
 gameRouter.post(
   "/",
   uploadFileDisk().single("coverImage"),
