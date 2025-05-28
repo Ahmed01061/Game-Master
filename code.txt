@@ -1,0 +1,46 @@
+gamehaven-api/
+├── src/
+│   ├── config/
+│   │   └── db.js          
+│   ├── controllers/
+│   │   ├── authController.js
+│   │   ├── gameController.js
+│   │   ├── cartController.js
+│   │   ├── orderController.js
+│   │   └── userController.js   # (Optional for user profile, etc.)
+│   ├── middlewares/
+│   │   ├── authMiddleware.js   # JWT authentication & authorization
+│   │   ├── errorMiddleware.js  # Global error handler
+│   │   ├── loggingMiddleware.js # Custom logging (if Morgan isn't enough)
+│   │   └── validationMiddleware.js # Handles express-validator errors
+│   │   └── uploadMiddleware.js # Multer configuration
+│   ├── models/
+│   │   ├── User.js
+│   │   ├── Game.js
+│   │   ├── Cart.js
+│   │   └── Order.js
+│   ├── routes/
+│   │   ├── index.js      
+│   │   ├── authRoutes.js
+│   │   ├── gameRoutes.js
+│   │   ├── cartRoutes.js
+│   │   └── orderRoutes.js
+│   ├── services/
+│   │   ├── authService.js
+│   │   ├── gameService.js
+│   │   ├── cartService.js
+│   │   └── orderService.js
+│   ├── utils/
+│   │   ├── apiError.js     
+│   │   └── apiResponse.js    
+│   │   └── jwtHelper.js    
+│   ├── validations/          
+│   │   ├── authValidation.js
+│   │   └── gameValidation.js
+├── uploads/                
+├── .env
+├── .env.example
+├── .gitignore
+├── package.json
+├── README.md
+└── server.js          
