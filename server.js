@@ -3,6 +3,7 @@ import express from "express";
 import morgan from "morgan";
 import connectDB from "./src/config/db.js";
 import gameRouter from "./src/routes/game.routes.js";
+import userRouter from "./src/routes/user.routes.js";
 
 const app = express();
 
@@ -10,6 +11,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/games", gameRouter);
+app.use("/users", userRouter);
 
 connectDB();
 
