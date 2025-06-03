@@ -1,17 +1,8 @@
 import { Router } from "express";
-import {
-  createGame,
-  getGames,
-  updateGame,
-  deleteGame,
-} from "../controllers/game.controller.js";
+import { createGame, getGames } from "../controllers/game.controller.js";
 import validation from "../middlewares/validation.js";
 import uploadFileDisk from "../utils/local.multer.js";
-import {
-  validateCreateGame,
-  validateUpdateGame,
-  validateDeleteGame,
-} from "../validations/game.validation.js";
+import { validateCreateGame } from "../validations/game.validation.js";
 
 const gameRouter = Router();
 

@@ -7,11 +7,7 @@ import {
 } from "../controllers/game.controller.js";
 import validation from "../middlewares/validation.js";
 import uploadFileDisk from "../utils/local.multer.js";
-import {
-  validateCreateGame,
-  validateUpdateGame,
-  validateDeleteGame,
-} from "../validations/game.validation.js";
+import { validateCreateGame } from "../validations/game.validation.js";
 
 const gameRouter = Router();
 
@@ -32,7 +28,7 @@ gameRouter.post(
 gameRouter.put(
   "/:id",
   uploadFileDisk().single("coverImage"),
-  validateUpdateGame,
+  validateCreateGame,
   validation,
   updateGame
 );

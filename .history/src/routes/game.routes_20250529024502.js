@@ -32,7 +32,7 @@ gameRouter.post(
 gameRouter.put(
   "/:id",
   uploadFileDisk().single("coverImage"),
-  validateUpdateGame,
+  validateCreateGame,
   validation,
   updateGame
 );
