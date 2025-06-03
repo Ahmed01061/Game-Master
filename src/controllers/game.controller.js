@@ -116,4 +116,4 @@ const deleteGame = async (req, res) => {
   }
 };
 
-export { createGame, getGames, updateGame, deleteGame };
+export { createGame, deleteGame, getGames, updateGame };
