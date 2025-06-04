@@ -3,6 +3,7 @@ import express from "express";
 import morgan from "morgan";
 import connectDB from "./src/config/db.js";
 import authRouter from "./src/routes/auth.routes.js";
+import cartRouter from "./src/routes/cart.routes.js";
 import gameRouter from "./src/routes/game.routes.js";
 import userRouter from "./src/routes/user.routes.js";
 import globalErrorHandler from "./src/utils/globalError.js";
@@ -15,6 +16,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/games", gameRouter);
 app.use("/auth", authRouter);
 app.use("/users", userRouter);
+app.use("/cart", cartRouter);
+
 app.get("/", (req, res) => {
   res.status(200).json({ message: "Welcome to GameHaven API" });
 });
