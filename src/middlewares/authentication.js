@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import userModel from "../DB/models/userModel.js";
+import UserModel from "../models/userModel.js";
 import AppError from "../utils/appError.js";
 
 const authentication = async (req, res, next) => {
@@ -10,7 +10,7 @@ const authentication = async (req, res, next) => {
 
   /* Verify Token */
 
-  const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+  const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
   //   console.log(decoded);
 
@@ -19,7 +19,7 @@ const authentication = async (req, res, next) => {
 
   /* Check If User Exist */
 
-  const user = await userModel.findById({ _id: decoded.id });
+  const user = await UserModel.findById({ _id: decoded.id });
 
   if (!user) return next(new AppError("user is not exist", 404));
 

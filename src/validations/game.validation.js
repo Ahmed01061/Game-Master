@@ -1,7 +1,6 @@
 // middlewares/gameValidator.js
 import { body, param } from "express-validator";
 
-
 export const validateCreateGame = [
   body("title")
     .notEmpty()
