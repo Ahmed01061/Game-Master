@@ -26,7 +26,7 @@ const gameModel = new Schema({
     enum: ["Action", "Adventure", "RPG", "Puzzle", "Sports", "Strategy"],
     required: true,
   },
-  Stock: {
+  stock: {
     type: Number,
     default: 50,
   },
