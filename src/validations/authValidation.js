@@ -1,40 +1,41 @@
 import { body } from "express-validator";
 
 export const registerValidation = [
-  body("name")
+  body("userName")
     .notEmpty()
-    .withMessage("Name is required")
+    .withMessage("User name is required form express validator")
     .isLength({ min: 3 })
-    .withMessage("Name must be at least 3 characters long")
-    .trim()
-    .escape(),
+    .withMessage(
+      "User name must be at least 3 characters form express validator"
+    ),
+
   body("email")
     .notEmpty()
-    .withMessage("Email is required")
+    .withMessage("Email is required form express validator")
     .isEmail()
-    .withMessage("Email must be a valid email address")
-    .normalizeEmail(),
+    .withMessage("Invalid email format form express validator"),
+
   body("password")
     .notEmpty()
-    .withMessage("Password is required")
-    .isLength({ min: 6 })
-    .withMessage("Password must be at least 6 characters long"),
-  body("role")
-    .optional(true)
-    .isIn(["USER", "ADMIN"])
-    .withMessage("Role must be one of the following: USER, ADMIN"),
+    .withMessage("Password is required form express validator")
+    .isLength({ min: 3 })
+    .withMessage(
+      "Password must be at least 3 characters form express validator"
+    ),
 ];
 
 export const loginValidation = [
   body("email")
     .notEmpty()
-    .withMessage("Email is required")
+    .withMessage("Email is required form express validator")
     .isEmail()
-    .withMessage("Email must be a valid email address")
-    .normalizeEmail(),
+    .withMessage("Invalid email format form express validator"),
+
   body("password")
     .notEmpty()
-    .withMessage("Password is required")
-    .isLength({ min: 6 })
-    .withMessage("Password must be at least 6 characters long"),
+    .withMessage("Password is required form express validator")
+    .isLength({ min: 3 })
+    .withMessage(
+      "Password must be at least 3 characters form express validator"
+    ),
 ];

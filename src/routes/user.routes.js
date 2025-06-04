@@ -1,18 +1,11 @@
-import express from "express";
-import * as userController from "../controllers/user.controller.js";
-import validation from "../middlewares/validation.js";
-import {
-  registerValidation,
-  loginValidation,
-} from "../validations/authValidation.js";
+import { Router } from "express";
+import { getUsers } from "../controllers/user.controller.js";
+import catchError from "../middlewares/catchError.js";
 
-const userRouter = express.Router();
-userRouter.post(
-  "/register",
-  registerValidation,
-  validation,
-  userController.register
-);
-userRouter.post("/login", loginValidation, validation, userController.login);
+const userRouter = Router();
+
+/* ============ Get Users ============ */
+
+userRouter.get("/", catchError(getUsers));
 
 export default userRouter;
