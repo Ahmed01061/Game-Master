@@ -35,7 +35,6 @@ const addToCart = async (req, res, next) => {
         },
       ],
     });
-    game.stock -= quantity;
     await game.save();
     calcTotalPrice(cart);
 
@@ -60,7 +59,6 @@ const addToCart = async (req, res, next) => {
       if (game.stock < newQuantity - oldQuantity) {
         return next(new AppError("Out of stock", 400));
       }
-      game.stock -= newQuantity - oldQuantity;
       cartGame.quantity = newQuantity;
       flag = true;
     }
@@ -80,7 +78,6 @@ const addToCart = async (req, res, next) => {
   calcTotalPrice(cartIsExist);
 
   await cartIsExist.save();
-  await game.save();
 
   return res.json({
     message: "Success Add To Cart",
