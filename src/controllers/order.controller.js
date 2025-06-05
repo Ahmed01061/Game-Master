@@ -41,4 +41,32 @@ const createOrder = async (req, res, next) => {
   res.status(201).json(createdOrder);
 };
 
-export { createOrder };
+const getLoggedUserOrder = async (req, res, next) => {
+  try {
+    const userId = req.user._id;
+    const orders = await OrderModel.find({ user: userId })
+      .populate({
+        path: "orderItems.game",
+        select: "title coverImage price platform",
+      })
+      .sort({ createdAt: -1 });
+    if (!orders || orders.length === 0) {
+      return res.status(200).json({
+        message: "You have no orders yet.",
+        count: 0,
+        data: [],
+      });
+    }
+    return res.status(200).json({
+      message: "Successfully retrieved your orders.",
+      count: orders.length,
+      data: orders,
+    });
+  } catch (error) {
+    return next(
+      new AppError("Failed to retrieve orders: " + error.message, 500)
+    );
+  }
+};
+
+export { createOrder, getLoggedUserOrder };
