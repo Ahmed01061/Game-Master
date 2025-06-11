@@ -1,5 +1,5 @@
 // middlewares/gameValidator.js
-import { body } from "express-validator";
+import { body, param } from "express-validator";
 
 export const validateCreateGame = [
   body("title")

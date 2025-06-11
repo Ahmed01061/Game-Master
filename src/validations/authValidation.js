@@ -1,14 +1,41 @@
-import { body } from 'express-validator';
+import { body } from "express-validator";
 
-const registerValidation = [
-    body('name').notEmpty().withMessage('Name is required').trim().escape(),
-    body('email').isEmail().withMessage('Valid email is required').normalizeEmail(),
-    body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters long'),
+export const registerValidation = [
+  body("userName")
+    .notEmpty()
+    .withMessage("User name is required form express validator")
+    .isLength({ min: 3 })
+    .withMessage(
+      "User name must be at least 3 characters form express validator"
+    ),
+
+  body("email")
+    .notEmpty()
+    .withMessage("Email is required form express validator")
+    .isEmail()
+    .withMessage("Invalid email format form express validator"),
+
+  body("password")
+    .notEmpty()
+    .withMessage("Password is required form express validator")
+    .isLength({ min: 3 })
+    .withMessage(
+      "Password must be at least 3 characters form express validator"
+    ),
 ];
 
-const loginValidation = [
-    body('email').isEmail().withMessage('Valid email is required').normalizeEmail(),
-    body('password').notEmpty().withMessage('Password is required'),
-];
+export const loginValidation = [
+  body("email")
+    .notEmpty()
+    .withMessage("Email is required form express validator")
+    .isEmail()
+    .withMessage("Invalid email format form express validator"),
 
-export { registerValidation, loginValidation };
+  body("password")
+    .notEmpty()
+    .withMessage("Password is required form express validator")
+    .isLength({ min: 3 })
+    .withMessage(
+      "Password must be at least 3 characters form express validator"
+    ),
+];

@@ -1,16 +1,19 @@
 import { Router } from "express";
 import {
   createGame,
+  deleteGame,
   getGames,
   updateGame,
-  deleteGame,
 } from "../controllers/game.controller.js";
+import authentication from "../middlewares/authentication.js";
+import authorization from "../middlewares/authorization.js";
+import catchError from "../middlewares/catchError.js";
 import validation from "../middlewares/validation.js";
 import uploadFileDisk from "../utils/local.multer.js";
 import {
   validateCreateGame,
-  validateUpdateGame,
   validateDeleteGame,
+  validateUpdateGame,
 } from "../validations/game.validation.js";
 
 const gameRouter = Router();
@@ -23,21 +26,32 @@ gameRouter.get("/", getGames);
 gameRouter.post(
   "/",
   uploadFileDisk().single("coverImage"),
+  authentication,
+  authorization,
   validateCreateGame,
   validation,
-  createGame
+  catchError(createGame)
 );
 
 /* ======== End Point Update Game ========  */
 gameRouter.put(
   "/:id",
   uploadFileDisk().single("coverImage"),
+  authentication,
+  authorization,
   validateUpdateGame,
   validation,
-  updateGame
+  catchError(updateGame)
 );
 
 /* ======== End Point Delete Game ========  */
-gameRouter.delete("/:id", validateDeleteGame, validation, deleteGame);
+gameRouter.delete(
+  "/:id",
+  authentication,
+  authorization,
+  validateDeleteGame,
+  validation,
+  catchError(deleteGame)
+);
 
 export default gameRouter;
