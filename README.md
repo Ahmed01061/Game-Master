@@ -1,12 +1,57 @@
-# Game-Master
-is a fictional digital video game marketplace. You are tasked with building the backend REST API for this platform using Node.js, Express, and MongoDB. This project simulates real-world backend development and tests your skills in API design, authentication, business logic structuring, security, and data modeling.
-Installation 
-$ Clone repository 
-git clone https://github.com/ 
-$ Install dependencies 
-npm install 
-$ Set up environment 
-cp.env.example.env 
-$ Edit .env with your configurations 
-$ Start development server 
-npm start
+# 🎮 Game Haven - Node.js API
+
+Game Haven is a powerful RESTful API built with **Node.js** and **Express**, providing a robust backend for a gaming e-commerce platform. It supports full user authentication, game management, wishlist, cart operations, and order processing.
+
+## 🚀 Features
+
+### 🔐 Authentication
+
+- **Register** new users
+- **Login** existing users
+- Secured routes with JWT authentication and role-based access
+
+### 🎮 Games Management
+
+- **Add**, **Get**, **Update**, and **Delete** games
+- Upload game images using **Multer**
+
+### ❤️ Wishlist
+
+- `addToWishlist`
+- `getLoggedUserWishList`
+- `deleteProductFromWishlist`
+- `clearLoggedUserWishlist`
+
+### 🛒 Cart
+
+- `addToCart`
+- `getLoggedUserCart`
+- `updateQuantity`
+- `deleteCartGame`
+- `clearCart`
+
+### 📦 Orders
+
+- `createOrder`
+- `getLoggedUserOrder`
+
+---
+
+## 🛡️ Middleware and Security
+
+- **Protected Routes** using JWT tokens
+- **Input Validation** with `express-validator`
+- **Password Hashing** using `bcryptjs`
+
+---
+
+## 🧰 Tech Stack
+
+- **Node.js**
+- **Express**
+- **MongoDB** with **Mongoose**
+- **JWT** for authentication
+- **Multer** for file upload (game images)
+- **Morgan** for logging
+- **Dotenv** for environment configuration
+- **Nanoid** for generating unique IDs

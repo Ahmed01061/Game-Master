@@ -2,6 +2,7 @@ import { Router } from "express";
 import {
   createGame,
   deleteGame,
+  getGame,
   getGames,
   updateGame,
 } from "../controllers/game.controller.js";
@@ -20,7 +21,13 @@ const gameRouter = Router();
 
 /* ======== End Point Get Game ========  */
 
+/* ======== Gat Games ======== */
+
 gameRouter.get("/", getGames);
+
+/* ======== Gat Game ======== */
+
+gameRouter.get("/:gameId", getGame);
 
 /* ======== End Point Create Game ========  */
 gameRouter.post(

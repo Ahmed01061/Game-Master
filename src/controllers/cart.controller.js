@@ -86,6 +86,118 @@ const addToCart = async (req, res, next) => {
   });
 };
 
+/* ============ Update Quantity ============ */
+
+const updateQuantity = async (req, res, next) => {
+  const userId = req.user._id;
+  const gameId = req.params.id;
+  const { quantity } = req.body;
+
+  /* Check if user has cart */
+  const cart = await CartModel.findOne({ user: userId });
+  if (!cart) {
+    return next(new AppError(messages.cart.notFound, 404));
+  }
+
+  /* Check if game  */
+  const game = await GameModel.findOne({ _id: gameId });
+  if (!game) {
+    return next(new AppError("Game Not Found", 404));
+  }
+
+  console.log(cart);
+
+  /* Check if Game is in cart */
+  const cartProduct = cart.games.find(
+    (item) => item.game.toString() === gameId
+  );
+  if (!cartProduct) {
+    return next(new AppError("Game Not Found", 404));
+  }
+
+  /* Check if quantity is valid */
+  const newQuantity = quantity;
+  if (newQuantity <= 0) {
+    return next(new AppError("Invalid Quantity", 400));
+  }
+
+  /* Update quantity */
+  cartProduct.quantity += Number(newQuantity);
+
+  /* Recalculate totalCartPrice */
+  calcTotalPrice(cart);
+
+  await cart.save();
+
+  const cartItems = await CartModel.findOne({ user: userId }).populate(
+    "games.game"
+  );
+
+  return res.json({ message: "Updated Success", cart: cartItems });
+};
+
+/* ============ Delete Cart Game ============ */
+
+const deleteCartGame = async (req, res, next) => {
+  const userId = req.user._id;
+  const gameId = req.params.id;
+
+  /* Check if the cart exists */
+  let cart = await CartModel.findOne({ user: userId });
+  if (!cart) {
+    return next(new AppError("Cart Not Found", 404));
+  }
+
+  /* Check if the game exists in the cart */
+  const gameIn = cart.games.find((item) => item.game.toString() === gameId);
+  if (!gameIn) {
+    return next(new AppError("Game Not In Cart", 404));
+  }
+
+  /* Remove product from cart */
+  cart = await CartModel.findOneAndUpdate(
+    { user: userId },
+    { $pull: { games: { game: gameId } } },
+    { new: true }
+  );
+
+  /* Check if the cart is empty after removal */
+  if (cart.games.length === 0) {
+    cart.totalCartPrice = 0;
+  } else {
+    /* Recalculate totalCartPrice */
+    calcTotalPrice(cart);
+  }
+
+  /* Save the updated cart */
+  await cart.save();
+
+  const cartItems = await CartModel.findOne({ user: userId }).populate(
+    "games.game"
+  );
+
+  return res.json({ message: "Success Update Cart", cart: cartItems });
+};
+
+/* ============ Clear Cart ============ */
+
+const clearCart = async (req, res, next) => {
+  const userId = req.user._id;
+  const cart = await CartModel.findOneAndUpdate(
+    { user: userId },
+    { $set: { games: [], totalCartPrice: 0 } },
+    { new: true }
+  );
+  if (!cart) {
+    return next(new AppError("Cart Not Found", 404));
+  }
+
+  const cartItems = await CartModel.findOne({ user: userId }).populate(
+    "games.game"
+  );
+  return res.json({ message: "Success Clear Cart", cart: cartItems });
+};
+
 /* =========== Get User Cart ============ */
 
 const getLoggedUserCart = async (req, res, next) => {
@@ -100,4 +212,10 @@ const getLoggedUserCart = async (req, res, next) => {
   return res.json({ message: "Cart Get Logged User", count, cart });
 };
 
-export { addToCart, getLoggedUserCart };
+export {
+  addToCart,
+  clearCart,
+  deleteCartGame,
+  getLoggedUserCart,
+  updateQuantity,
+};

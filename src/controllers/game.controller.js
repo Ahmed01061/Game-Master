@@ -13,6 +13,17 @@ const getGames = async (req, res) => {
   }
 };
 
+/* ======================= Get game ======================= */
+const getGame = async (req, res, next) => {
+  const { gameId } = req.params;
+
+  const game = await GameModel.findById(gameId);
+  if (!game) {
+    return next(new AppError("Game Not Found", 404));
+  }
+  res.status(200).json({ message: "success", game });
+};
+
 /* ======================= Create all games ======================= */
 
 const createGame = async (req, res, next) => {
@@ -112,4 +123,4 @@ const deleteGame = async (req, res, next) => {
   res.status(200).json({ message: "Game deleted successfully" });
 };
 
-export { createGame, deleteGame, getGames, updateGame };
+export { createGame, deleteGame, getGame, getGames, updateGame };
