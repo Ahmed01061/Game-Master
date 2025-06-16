@@ -56,7 +56,10 @@ Game Haven is a powerful RESTful API built with **Node.js** and **Express**, pro
 - **Dotenv** for environment configuration
 - **Nanoid** for generating unique IDs
 
-📘 API Documentation
-For detailed API testing and usage, check out the full Postman Documentation:
+## 📘 API Documentation
 
-[![View in Postman](https://img.shields.io/badge/View%20in-Postman-orange?logo=postman)](https://identity.getpostman.com/handover/multifactor?user=29718992&handover_token=31567d52-1222-4052-bd0a-f36e08174db4)
+Explore and test the API using Postman:
+
+👉 [View Full API Documentation on Postman](https://documenter.getpostman.com/view/29718992/2sB2x8FWkf)
+
+[![View in Postman](https://img.shields.io/badge/View%20in-Postman-orange?logo=postman)](https://documenter.getpostman.com/view/29718992/2sB2x8FWkf)
