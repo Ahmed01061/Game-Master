@@ -1,28 +1,28 @@
-# 🎮 Game Haven - Node.js API
+#  Game Haven - Node.js API
 
 Game Haven is a powerful RESTful API built with **Node.js** and **Express**, providing a robust backend for a gaming e-commerce platform. It supports full user authentication, game management, wishlist, cart operations, and order processing.
 
-## 🚀 Features
+##  Features
 
-### 🔐 Authentication
+###  Authentication
 
 - **Register** new users
 - **Login** existing users
 - Secured routes with JWT authentication and role-based access
 
-### 🎮 Games Management
+###  Games Management
 
 - **Add**, **Get**, **Update**, and **Delete** games
 - Upload game images using **Multer**
 
-### ❤️ Wishlist
+###  Wishlist
 
 - `addToWishlist`
 - `getLoggedUserWishList`
 - `deleteProductFromWishlist`
 - `clearLoggedUserWishlist`
 
-### 🛒 Cart
+###  Cart
 
 - `addToCart`
 - `getLoggedUserCart`
@@ -30,14 +30,14 @@ Game Haven is a powerful RESTful API built with **Node.js** and **Express**, pro
 - `deleteCartGame`
 - `clearCart`
 
-### 📦 Orders
+###  Orders
 
 - `createOrder`
 - `getLoggedUserOrder`
 
 ---
 
-## 🛡️ Middleware and Security
+##  Middleware and Security
 
 - **Protected Routes** using JWT tokens
 - **Input Validation** with `express-validator`
@@ -45,7 +45,7 @@ Game Haven is a powerful RESTful API built with **Node.js** and **Express**, pro
 
 ---
 
-## 🧰 Tech Stack
+##  Tech Stack
 
 - **Node.js**
 - **Express**
@@ -56,10 +56,10 @@ Game Haven is a powerful RESTful API built with **Node.js** and **Express**, pro
 - **Dotenv** for environment configuration
 - **Nanoid** for generating unique IDs
 
-## 📘 API Documentation
+##  API Documentation
 
 Explore and test the API using Postman:
 
-👉 [View Full API Documentation on Postman](https://documenter.getpostman.com/view/29718992/2sB2x8FWkf)
+ [View Full API Documentation on Postman](https://documenter.getpostman.com/view/29718992/2sB2x8FWkf)
 
 [![View in Postman](https://img.shields.io/badge/View%20in-Postman-orange?logo=postman)](https://documenter.getpostman.com/view/29718992/2sB2x8FWkf)
